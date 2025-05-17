@@ -201,6 +201,28 @@ foreach ($offers as $offer) {
 
 ## Work with Views and Blade Template
 
+As our project requirement, the seller can create `Offers`. So we need to have a form where the seller can create offer.
+
+Make sure we have a form in view blade file.
+
+For this form we need to have a controller. run artisan command `php artisan make:controller OfferController --resource`
+
+Now, we need to add this controller in `Auth Protected Route`.
+
+```php
+
+Route::middleware('auth')->group(function () {
+✅  Route::resource('offers', \App\Http\Controllers\OfferController::class);
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+```
+
+By this resource route we can get all CRUD controller method into this route.
+
+
 ## Resources
 
 [Tutorial Video](https://www.youtube.com/playlist?list=PL3H43eIOtaDOW29Z6S-7AnZYwUqOqHCxZ)
